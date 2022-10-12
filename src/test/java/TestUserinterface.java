@@ -14,5 +14,8 @@ public class TestUserinterface extends BaseTest{
 
         AqualityServices.getBrowser().goTo(getUrl);
         Assert.assertTrue(welcomePage.isDisplayed(),"Welcome Page doesn't open");
+
+        welcomePage.clickHereLink();
+
     }
 }
