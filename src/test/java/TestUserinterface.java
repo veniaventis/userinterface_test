@@ -9,6 +9,7 @@ import utils.Randomizer;
 public class TestUserinterface extends BaseTest{
 
     private static final String getUrl = new JsonSettingsFile("settings.json").getValue("/url").toString();
+    private static final String getTimer = new JsonSettingsFile("testconfig.json").getValue("/timerStarts").toString();
     private static WelcomePage welcomePage;
 
     @Test
@@ -51,14 +52,38 @@ public class TestUserinterface extends BaseTest{
         Assert.assertTrue(welcomePage.isDisplayed(),"Welcome page hasn't been loaded");
 
         welcomePage.clickHereLink();
-        Assert.assertTrue(registrationPage.isDisplayed(), "Registration page hasn't been loaded");
+        Assert.assertTrue(registrationPage.isDisplayed() && registrationPage.getHelpForm().isDisplayed(), "Registration page hasn't been loaded");
 
         registrationPage.getHelpForm().clickSendToBottom();
-        Assert.assertTrue(registrationPage.getHelpForm().isHidden(),"Help form doesn't hiden ");
+        Assert.assertTrue(registrationPage.getHelpForm().isHidden(),"Help form doesn't hidden ");
+    }
 
+    @Test
+    public static void testCase3AcceptCookies(){
+        welcomePage = new WelcomePage();
+        RegistrationPage registrationPage = new RegistrationPage();
 
+        AqualityServices.getBrowser().goTo(getUrl);
+        Assert.assertTrue(welcomePage.isDisplayed(),"Welcome page hasn't been loaded");
 
+        welcomePage.clickHereLink();
+        Assert.assertTrue(registrationPage.isDisplayed() && registrationPage.getCookiesForm().isDisplayed(), "Registration page hasn't been loaded");
 
+        registrationPage.getCookiesForm().acceptClick();
+        Assert.assertTrue(registrationPage.getCookiesForm().isCookieClosed());
+    }
 
+    @Test
+    public static void testCase4TimerStarts(){
+        welcomePage = new WelcomePage();
+        RegistrationPage registrationPage = new RegistrationPage();
+
+        AqualityServices.getBrowser().goTo(getUrl);
+        Assert.assertTrue(welcomePage.isDisplayed(),"Welcome Page hasn't been loaded");
+
+        welcomePage.clickHereLink();
+        Assert.assertTrue(registrationPage.isDisplayed(),"Registration Page hasn't been loaded");
+
+        Assert.assertEquals(registrationPage.getTimerText(), getTimer,"Timer doesn't start from 00:00" );
     }
 }

@@ -1,7 +1,6 @@
 import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.browser.Browser;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 
 
