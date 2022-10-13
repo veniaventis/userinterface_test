@@ -11,7 +11,6 @@ public class WelcomePage extends Form {
         super(By.xpath("//button[contains(@class,'start__button')]"), "Welcome Page");
     }
     private final ILink hereLink =AqualityServices.getElementFactory().getLink(By.xpath("//a[contains(@href,'game')]"), "Link here");
-
     public void clickHereLink(){
         hereLink.clickAndWait();
     }

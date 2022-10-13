@@ -1,7 +1,6 @@
 {
   "domainZone" : ".net",
   "emailLength" : 15,
-  "imagePath": "//src//main//resources",
-  "imageName": "Photos-icon.png",
+  "imagePath": "\\src\\main\\resources\\ava.png",
   "interestedNumbers": 3
 }

@@ -7,6 +7,7 @@ import aquality.selenium.elements.interfaces.ICheckBox;
 import aquality.selenium.forms.Form;
 import org.openqa.selenium.By;
 import utils.Randomizer;
+import utils.UploadUtil;
 
 import java.util.ArrayList;
 
@@ -21,9 +22,7 @@ public class SecondForm extends Form {
     private final IButton next = AqualityServices.getElementFactory().getButton(By.xpath("//button[@name='button' and contains(text(),'Next')]"),"Next Button");
     private final String interestsLoc = "//label[contains(@for, 'interest')]";
     private final String interestsNamesLoc = "//span[contains(@class, 'checkbox small')]/following-sibling::span";
-    private final String getAvatarPath = new JsonSettingsFile("testconfig.json").getValue("/imagePath").toString();
-    private final String getAvatarName = new JsonSettingsFile("testconfig.json").getValue("/imageName").toString();
-
+    private final UploadUtil uploadUtil = new UploadUtil();
     private final int getInterestNumber = (int) new JsonSettingsFile("testconfig.json").getValue("/interestedNumbers");
 
     public void uncheckedAllClick(){
@@ -34,8 +33,8 @@ public class SecondForm extends Form {
         this.next.click();
     }
     public void uploadImage(){
-        this.upload.sendKeys(getAvatarPath + getAvatarName);
-
+        this.upload.click();
+        uploadUtil.imgUpload();
     }
 
     public void chooseRandomInterest() {
