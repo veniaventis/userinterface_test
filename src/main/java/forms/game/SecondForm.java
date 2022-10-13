@@ -6,7 +6,7 @@ import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.elements.interfaces.ICheckBox;
 import aquality.selenium.forms.Form;
 import org.openqa.selenium.By;
-import utils.Randomizer;
+import utils.RandomUtils;
 import utils.UploadUtil;
 
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class SecondForm extends Form {
     public void chooseRandomInterest() {
         ArrayList<Integer> indexes = new ArrayList<>();
         while (indexes.size() < getInterestNumber) {
-            int randomIndex = Randomizer.getRandomInt(1, 20);
+            int randomIndex = RandomUtils.getRandomInt(1, 20);
             String interestName = AqualityServices.getElementFactory().getCheckBox(By.xpath("(" + interestsNamesLoc + ")[" + randomIndex + "]"), "interestName").getText();
             if (!indexes.contains(randomIndex) && !interestName.equals("Select all")) {
                 indexes.add(randomIndex);

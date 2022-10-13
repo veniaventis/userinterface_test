@@ -3,9 +3,9 @@ package utils;
 import aquality.selenium.core.utilities.JsonSettingsFile;
 import java.util.Random;
 
-public final class Randomizer {
+public final class RandomUtils {
 
-    private Randomizer() {}
+    private RandomUtils() {}
 
     public static String getRandomEmailName() {
         Random random = new Random();

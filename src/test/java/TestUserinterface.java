@@ -4,7 +4,7 @@ import forms.game.RegistrationPage;
 import forms.WelcomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import utils.Randomizer;
+import utils.RandomUtils;
 
 public class TestUserinterface extends BaseTest{
 
@@ -24,9 +24,9 @@ public class TestUserinterface extends BaseTest{
         welcomePage.clickHereLink();
         Assert.assertTrue(registrationPage.isDisplayed(), "1 card hasn't been open");
 
-        String email = Randomizer.getRandomEmailName();
-        String password = Randomizer.getRandomPassword(email);
-        String domain = Randomizer.getRandomEmailDomain();
+        String email = RandomUtils.getRandomEmailName();
+        String password = RandomUtils.getRandomPassword(email);
+        String domain = RandomUtils.getRandomEmailDomain();
 
         registrationPage.getFirstCard().enterPassword(password);
         registrationPage.getFirstCard().enterEmailName(email);
