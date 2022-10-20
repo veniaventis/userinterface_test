@@ -1,17 +1,18 @@
 package utils;
 
 import aquality.selenium.core.utilities.JsonSettingsFile;
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.util.Random;
 
 public final class RandomUtils {
 
     private RandomUtils() {}
-
+    private static final int LENGTH = (int) new JsonSettingsFile("testconfig.json").getValue("/emailLength");
+    private static final Random random = new Random();
+    private static final StringBuilder stringBuilder = new StringBuilder();
     public static String getRandomEmailName() {
-        Random random = new Random();
-        StringBuilder stringBuilder = new StringBuilder();
-        int emailLength = (int) new JsonSettingsFile("testconfig.json").getValue("/emailLength");
-        for (int i = 0; i < emailLength; i++) {
+        for (int i = 0; i < LENGTH; i++) {
             char tmp = (char) ('a' + random.nextInt('z' - 'a'));
             stringBuilder.append(tmp);
         }
@@ -19,20 +20,17 @@ public final class RandomUtils {
     }
 
     public static String getRandomEmailDomain() {
-        String[] domains = new String[] {"gmail", "yahoo", "yandex", "mail"};
-        return domains[(int) (Math.random() * domains.length)];
+        int getDomainLength = (int) new JsonSettingsFile("testconfig.json").getValue("/domainLength");
+        return RandomStringUtils.randomAlphanumeric(getDomainLength);
     }
 
     public static String getRandomPassword(String email) {
-        Random random = new Random();
-        StringBuilder stringBuilder = new StringBuilder();
-        int passwordLength = (int) new JsonSettingsFile("testconfig.json").getValue("/emailLength");
 
-        stringBuilder.append((int) (Math.random() * passwordLength));
+        stringBuilder.append((int) (Math.random() * LENGTH));
         stringBuilder.append((char) ('а' + random.nextInt('я' - 'а')));
         stringBuilder.append(email.charAt((int) (Math.random() * email.length())));
 
-        for (int i = 0; i < passwordLength; i++) {
+        for (int i = 0; i < LENGTH; i++) {
             char tmp = (char) ('a' + random.nextInt('z' - 'a'));
             if (i == 0) {
                 stringBuilder.append(String.valueOf(tmp).toUpperCase());

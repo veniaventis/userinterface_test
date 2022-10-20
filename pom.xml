@@ -19,7 +19,6 @@
             <artifactId>testng</artifactId>
             <version>7.6.1</version>
         </dependency>
-
     </dependencies>
     <properties>
         <maven.compiler.source>18</maven.compiler.source>

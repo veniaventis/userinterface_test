@@ -3,5 +3,8 @@
   "emailLength" : 15,
   "imagePath": "\\src\\main\\resources\\ava.png",
   "interestedNumbers": 3,
-  "timerStarts": "00:00:00"
+  "timerStarts": "00:00:00",
+  "maxInterestNumber": 20,
+  "interestSelectAll":"SelectAll",
+  "domainLength": 5
 }

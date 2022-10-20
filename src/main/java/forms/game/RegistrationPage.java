@@ -6,36 +6,24 @@ import aquality.selenium.forms.Form;
 import org.openqa.selenium.By;
 
 public class RegistrationPage extends Form {
-
-    private final ILabel timer = AqualityServices.getElementFactory().getLabel(By.xpath("//div[contains(@class,'timer')]"),"Timer");
     public RegistrationPage() {
         super(By.xpath("//div[@class='login-form-with-pw-check']"),"Registration Page ");
     }
-    private final FirstForm firstForm = new FirstForm();
-    private final SecondForm secondForm = new SecondForm();
-    private final ThirdForm thirdForm = new ThirdForm();
-    private final HelpForm helpForm = new HelpForm();
-    private final CookiesForm cookiesForm = new CookiesForm();
+    private final ILabel timer = AqualityServices.getElementFactory().getLabel(By.xpath("//div[contains(@class,'timer')]"),"Timer");
 
-
-    public FirstForm getFirstCard(){
-        return firstForm;
+    public RegistrationForm getFirstCard(){
+        return new RegistrationForm();
     }
-
-    public SecondForm getSecondCard(){
-        return secondForm;
-    }
-
+    public AvatarForm getSecondCard(){return new AvatarForm();}
     public ThirdForm getThirdCard(){
-        return thirdForm;
+        return new ThirdForm();
     }
     public HelpForm getHelpForm(){
-        return helpForm;
+        return new HelpForm();
     }
     public CookiesForm getCookiesForm(){
-        return cookiesForm;
+        return new CookiesForm();
     }
-
     public String getTimerText(){
         return timer.getText();
     }

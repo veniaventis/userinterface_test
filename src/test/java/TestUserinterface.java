@@ -1,4 +1,4 @@
-import aquality.selenium.browser.AqualityServices;
+
 import aquality.selenium.core.utilities.JsonSettingsFile;
 import forms.game.RegistrationPage;
 import forms.WelcomePage;
@@ -7,22 +7,15 @@ import org.testng.annotations.Test;
 import utils.RandomUtils;
 
 public class TestUserinterface extends BaseTest{
-
-    private static final String getUrl = new JsonSettingsFile("settings.json").getValue("/url").toString();
     private static final String getTimer = new JsonSettingsFile("testconfig.json").getValue("/timerStarts").toString();
-    private static WelcomePage welcomePage;
-
+    private static final WelcomePage welcomePage = new WelcomePage();
+    private static final RegistrationPage registrationPage = new RegistrationPage();
     @Test
-    public static void testCase1FillProfileData(){
-         welcomePage = new WelcomePage();
-         RegistrationPage registrationPage = new RegistrationPage();
-
-
-        AqualityServices.getBrowser().goTo(getUrl);
-        Assert.assertTrue(welcomePage.isDisplayed(),"Welcome Page doesn't open");
+    public static void testFillProfileData(){
+        Assert.assertTrue(welcomePage.state().isDisplayed(),"Welcome Page doesn't open");
 
         welcomePage.clickHereLink();
-        Assert.assertTrue(registrationPage.isDisplayed(), "1 card hasn't been open");
+        Assert.assertTrue(registrationPage.state().isDisplayed(), "1 card hasn't been open");
 
         String email = RandomUtils.getRandomEmailName();
         String password = RandomUtils.getRandomPassword(email);
@@ -34,55 +27,45 @@ public class TestUserinterface extends BaseTest{
         registrationPage.getFirstCard().chooseDomainZone();
         registrationPage.getFirstCard().clickTermsCondition();
         registrationPage.getFirstCard().nextClick();
-        Assert.assertTrue(registrationPage.getSecondCard().isDisplayed(), "Second card has not been loaded");
+        Assert.assertTrue(registrationPage.getSecondCard().state().isDisplayed(), "Second card has not been loaded");
 
         registrationPage.getSecondCard().uncheckedAllClick();
         registrationPage.getSecondCard().chooseRandomInterest();
         registrationPage.getSecondCard().uploadImage();
         registrationPage.getSecondCard().nextClick();
-        Assert.assertTrue(registrationPage.getThirdCard().isDisplayed(), "Third card hasn't been loaded ");
+        Assert.assertTrue(registrationPage.getThirdCard().state().isDisplayed(), "Third card hasn't been loaded ");
     }
 
     @Test
-    public static void testCase2HideHelpForm(){
-        welcomePage = new WelcomePage();
-        RegistrationPage registrationPage = new RegistrationPage();
-
-        AqualityServices.getBrowser().goTo(getUrl);
-        Assert.assertTrue(welcomePage.isDisplayed(),"Welcome page hasn't been loaded");
+    public static void testHideHelpForm(){
+        Assert.assertTrue(welcomePage.state().isDisplayed(),"Welcome page hasn't been loaded");
 
         welcomePage.clickHereLink();
-        Assert.assertTrue(registrationPage.isDisplayed() && registrationPage.getHelpForm().isDisplayed(), "Registration page hasn't been loaded");
+        Assert.assertTrue(registrationPage.state().isDisplayed(), "Registration page hasn't been loaded");
+        Assert.assertTrue(registrationPage.getHelpForm().state().isDisplayed(),"Help form hasn't been loaded");
 
         registrationPage.getHelpForm().clickSendToBottom();
         Assert.assertTrue(registrationPage.getHelpForm().isHidden(),"Help form doesn't hidden ");
     }
 
     @Test
-    public static void testCase3AcceptCookies(){
-        welcomePage = new WelcomePage();
-        RegistrationPage registrationPage = new RegistrationPage();
-
-        AqualityServices.getBrowser().goTo(getUrl);
-        Assert.assertTrue(welcomePage.isDisplayed(),"Welcome page hasn't been loaded");
+    public static void testAcceptCookies(){
+        Assert.assertTrue(welcomePage.state().isDisplayed(),"Welcome page hasn't been loaded");
 
         welcomePage.clickHereLink();
-        Assert.assertTrue(registrationPage.isDisplayed() && registrationPage.getCookiesForm().isDisplayed(), "Registration page hasn't been loaded");
+        Assert.assertTrue(registrationPage.state().isDisplayed(), "Registration page hasn't been loaded");
+        Assert.assertTrue(registrationPage.getCookiesForm().state().waitForNotExist(),"Cookies form hasn't shown");
 
         registrationPage.getCookiesForm().acceptClick();
         Assert.assertTrue(registrationPage.getCookiesForm().isCookieClosed());
     }
 
     @Test
-    public static void testCase4TimerStarts(){
-        welcomePage = new WelcomePage();
-        RegistrationPage registrationPage = new RegistrationPage();
-
-        AqualityServices.getBrowser().goTo(getUrl);
-        Assert.assertTrue(welcomePage.isDisplayed(),"Welcome Page hasn't been loaded");
+    public static void testTimerStarts(){
+        Assert.assertTrue(welcomePage.state().isDisplayed(),"Welcome Page hasn't been loaded");
 
         welcomePage.clickHereLink();
-        Assert.assertTrue(registrationPage.isDisplayed(),"Registration Page hasn't been loaded");
+        Assert.assertTrue(registrationPage.state().isDisplayed(),"Registration Page hasn't been loaded");
 
         Assert.assertEquals(registrationPage.getTimerText(), getTimer,"Timer doesn't start from 00:00" );
     }

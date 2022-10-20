@@ -8,9 +8,9 @@ import aquality.selenium.elements.interfaces.ITextBox;
 import aquality.selenium.forms.Form;
 import org.openqa.selenium.By;
 
-public class FirstForm extends Form {
-    public FirstForm() {
-        super(By.xpath("//div[contains(@class,'page-indicator') and contains(text(),'1')]"), "First Card");
+public class RegistrationForm extends Form {
+    public RegistrationForm() {
+        super(By.xpath("//div[@class='login-form']"), "First Card");
     }
 
     private final String getDomainZone = new JsonSettingsFile("testconfig.json").getValue("/domainZone").toString();
@@ -19,36 +19,24 @@ public class FirstForm extends Form {
     private final ITextBox domainField = AqualityServices.getElementFactory().getTextBox(By.xpath("//input[contains(@placeholder,'Domain')]"), "Domain Field");
     private final ICheckBox termsCondition = AqualityServices.getElementFactory().getCheckBox(By.xpath("//span[@class='checkbox']"), "Terms & Conditions checkbox");
     private final IButton domainZoneDropDown = AqualityServices.getElementFactory().getButton(By.xpath("//div[contains(@class,'dropdown__field')]"), "Domain Zone dropdown menu");
-    private final IButton domainZone = AqualityServices.getElementFactory().getButton(By.xpath("//div[contains(text(),'"+ getDomainZone +"')]"), "Domain Zone");
+    private final IButton domainZone = AqualityServices.getElementFactory().getButton(By.xpath(String.format("//div[contains(text(),'%s')]", getDomainZone)), "Domain Zone");
     private final IButton next = AqualityServices.getElementFactory().getButton(By.xpath("//a[contains(@class,'button--secondary') and text()='Next']"),"Next Button");
 
 
     public void enterPassword(String password) {
-        this.passwordField.clearAndType(password);
+        passwordField.clearAndType(password);
     }
 
     public void enterEmailName(String email){
-        this.emailField.clearAndType(email);
+        emailField.clearAndType(email);
     }
-
     public void enterDomainName(String domainName){
-        this.domainField.clearAndType(domainName);
+        domainField.clearAndType(domainName);
     }
-
     public void chooseDomainZone(){
-        this.domainZoneDropDown.click();
-        this.domainZone.click();
+        domainZoneDropDown.click();
+        domainZone.click();
     }
-
-    public void clickTermsCondition(){
-        this.termsCondition.click();
-    }
-
-    public void nextClick(){
-        this.next.click();
-    }
-
-
-
-
+    public void clickTermsCondition(){termsCondition.click();}
+    public void nextClick(){next.click();}
 }
