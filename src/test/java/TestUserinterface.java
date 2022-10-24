@@ -29,7 +29,6 @@ public class TestUserinterface extends BaseTest{
         REGISTRATION_PAGE.getSecondCard().nextClick();
         Assert.assertTrue(REGISTRATION_PAGE.getThirdCard().state().isDisplayed(), "Third card hasn't been loaded ");
     }
-
     @Test
     public static void testHideHelpForm(){
         Assert.assertTrue(WELCOME_PAGE.state().isDisplayed(),"Welcome page hasn't been loaded");
@@ -41,7 +40,6 @@ public class TestUserinterface extends BaseTest{
         REGISTRATION_PAGE.getHelpForm().clickSendToBottom();
         Assert.assertTrue(REGISTRATION_PAGE.getHelpForm().isHidden(),"Help form doesn't hidden ");
     }
-
     @Test
     public static void testAcceptCookies(){
         Assert.assertTrue(WELCOME_PAGE.state().isDisplayed(),"Welcome page hasn't been loaded");
@@ -53,14 +51,12 @@ public class TestUserinterface extends BaseTest{
         REGISTRATION_PAGE.getCookiesForm().acceptClick();
         Assert.assertTrue(REGISTRATION_PAGE.getCookiesForm().isCookieClosed());
     }
-
     @Test
     public static void testTimerStarts(){
         Assert.assertTrue(WELCOME_PAGE.state().isDisplayed(),"Welcome Page hasn't been loaded");
 
         WELCOME_PAGE.clickHereLink();
         Assert.assertTrue(REGISTRATION_PAGE.state().isDisplayed(),"Registration Page hasn't been loaded");
-
         Assert.assertEquals(REGISTRATION_PAGE.getTimerText(), TIMER,"Timer doesn't start from 00:00" );
     }
 }

@@ -15,7 +15,6 @@ public class AvatarForm extends Form {
     public AvatarForm() {
         super(By.xpath("//div[contains(@class,'avatar-and-interests__avatar-box')]"), "Second Card");
     }
-
     private final ICheckBox UNCHECKED_ALL = AqualityServices.getElementFactory().getCheckBox(By.xpath("//input[@id='interest_unselectall']/following-sibling::span"), "Unchecked All Checkbox");
     private final IButton UPLOAD = AqualityServices.getElementFactory().getButton(By.xpath("//a[contains(@class,'avatar-and-interests__upload-button')]"), "Upload Button");
     private final IButton NEXT = AqualityServices.getElementFactory().getButton(By.xpath("//button[contains(@class,'button--stroked')]"), "Next Button");

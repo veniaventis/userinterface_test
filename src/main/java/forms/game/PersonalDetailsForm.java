@@ -6,6 +6,6 @@ import org.openqa.selenium.By;
 public class PersonalDetailsForm extends Form {
 
     public PersonalDetailsForm() {
-        super(By.xpath("//div[contains(@class,'page-indicator') and contains(text(),'3')]"), "Third Card Card");
+        super(By.xpath("//div[@class='personal-details']"), "Third Card Card");
     }
 }
