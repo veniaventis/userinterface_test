@@ -2,18 +2,16 @@ package utils;
 
 import aquality.selenium.core.logging.Logger;
 import aquality.selenium.core.utilities.JsonSettingsFile;
+
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 
 public class UploadUtil {
-
-
-    private static final String getAvatarPath = new JsonSettingsFile("testconfig.json").getValue("/imagePath").toString();
+    private static final String getAvatarPath = new JsonSettingsFile("TestData.json").getValue("/imagePath").toString();
     private static final StringSelection stringSelection = new StringSelection(System.getProperty("user.dir") + getAvatarPath);
 
     private static void copyPathToWindowsPopupMenu() throws AWTException {
-
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 
         Robot robot = new Robot();
@@ -28,6 +26,7 @@ public class UploadUtil {
         robot.delay(100);
         robot.keyRelease(KeyEvent.VK_ENTER);
     }
+
     public static void imgUpload() {
         try {
             copyPathToWindowsPopupMenu();

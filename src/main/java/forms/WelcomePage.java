@@ -9,10 +9,9 @@ public class WelcomePage extends Form {
     public WelcomePage() {
         super(By.xpath("//button[contains(@class,'start__button')]"), "Welcome Page");
     }
-
-    private final ILink hereLink =AqualityServices.getElementFactory().getLink(By.xpath("//a[contains(@class,'start__link')]"), "Link here");
+    private final ILink HERE_LINK =AqualityServices.getElementFactory().getLink(By.xpath("//a[contains(@class,'start__link')]"), "Link here");
     public void clickHereLink(){
-        hereLink.clickAndWait();
+        HERE_LINK.clickAndWait();
     }
 }
 

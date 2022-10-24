@@ -15,8 +15,8 @@ public class RegistrationPage extends Form {
         return new RegistrationForm();
     }
     public AvatarForm getSecondCard(){return new AvatarForm();}
-    public ThirdForm getThirdCard(){
-        return new ThirdForm();
+    public PersonalDetailsForm getThirdCard(){
+        return new PersonalDetailsForm();
     }
     public HelpForm getHelpForm(){
         return new HelpForm();

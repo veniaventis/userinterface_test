@@ -7,38 +7,36 @@ import java.util.Random;
 
 public final class RandomUtils {
 
-    private RandomUtils() {}
-    private static final int LENGTH = (int) new JsonSettingsFile("testconfig.json").getValue("/emailLength");
-    private static final Random random = new Random();
-    private static final StringBuilder stringBuilder = new StringBuilder();
+    private RandomUtils() {
+    }
+
+    private static final int LENGTH = (int) new JsonSettingsFile("TestData.json").getValue("/emailLength");
+    private static final Random RANDOM = new Random();
+    private static final StringBuilder STRING_BUILDER = new StringBuilder();
+    private static final char TMP = (char) ('a' + RANDOM.nextInt('z' - 'a'));
+
     public static String getRandomEmailName() {
-        for (int i = 0; i < LENGTH; i++) {
-            char tmp = (char) ('a' + random.nextInt('z' - 'a'));
-            stringBuilder.append(tmp);
-        }
-        return stringBuilder.toString();
+        STRING_BUILDER.append(String.valueOf(TMP).repeat(Math.max(0, LENGTH)));
+        return STRING_BUILDER.toString();
     }
 
     public static String getRandomEmailDomain() {
-        int getDomainLength = (int) new JsonSettingsFile("testconfig.json").getValue("/domainLength");
-        return RandomStringUtils.randomAlphanumeric(getDomainLength);
+        int domainLength = (int) new JsonSettingsFile("TestData.json").getValue("/domainLength");
+        return RandomStringUtils.randomAlphanumeric(domainLength);
     }
 
     public static String getRandomPassword(String email) {
-
-        stringBuilder.append((int) (Math.random() * LENGTH));
-        stringBuilder.append((char) ('а' + random.nextInt('я' - 'а')));
-        stringBuilder.append(email.charAt((int) (Math.random() * email.length())));
-
+        STRING_BUILDER.append((int) (Math.random() * LENGTH));
+        STRING_BUILDER.append((char) ('а' + RANDOM.nextInt('я' - 'а')));
+        STRING_BUILDER.append(email.charAt((int) (Math.random() * email.length())));
         for (int i = 0; i < LENGTH; i++) {
-            char tmp = (char) ('a' + random.nextInt('z' - 'a'));
             if (i == 0) {
-                stringBuilder.append(String.valueOf(tmp).toUpperCase());
+                STRING_BUILDER.append(String.valueOf(TMP).toUpperCase());
             } else {
-                stringBuilder.append(tmp);
+                STRING_BUILDER.append(TMP);
             }
         }
-        return stringBuilder.toString();
+        return STRING_BUILDER.toString();
     }
 
     public static int getRandomInt(int from, int toIncl) {
