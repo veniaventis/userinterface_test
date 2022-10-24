@@ -4,7 +4,6 @@ import forms.game.RegistrationPage;
 import forms.WelcomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import utils.RandomUtils;
 
 public class TestUserinterface extends BaseTest{
     private static final String TIMER = new JsonSettingsFile("TestData.json").getValue("/timerStarts").toString();
