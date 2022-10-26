@@ -14,30 +14,30 @@ public class RegistrationForm extends Form {
         super(By.xpath("//div[@class='login-form']"), "First Card");
     }
 
-    private final String DOMAIN_ZONE_FROM_DATA = new JsonSettingsFile("TestData.json").getValue("/domainZone").toString();
-    private final ITextBox PASSWORD_FIELD = AqualityServices.getElementFactory().getTextBox(By.xpath("//input[contains(@placeholder,'Password')]"), "Password Field");
-    private final ITextBox EMAIL_FIELD = AqualityServices.getElementFactory().getTextBox(By.xpath("//input[contains(@placeholder,'email')]"), "Email Field");
-    private final ITextBox DOMAIN_FIELD = AqualityServices.getElementFactory().getTextBox(By.xpath("//input[contains(@placeholder,'Domain')]"), "Domain Field");
-    private final ICheckBox TERMS_CONDITION = AqualityServices.getElementFactory().getCheckBox(By.xpath("//span[@class='checkbox']"), "Terms & Conditions checkbox");
-    private final IButton DOMAIN_ZONE_DROPDOWN = AqualityServices.getElementFactory().getButton(By.xpath("//div[contains(@class,'dropdown__field')]"), "Domain Zone dropdown menu");
-    private final IButton DOMAIN_ZONE = AqualityServices.getElementFactory().getButton(By.xpath(String.format("//div[contains(text(),'%s')]", DOMAIN_ZONE_FROM_DATA)), "Domain Zone");
-    private final IButton NEXT = AqualityServices.getElementFactory().getButton(By.xpath("//a[@class='button--secondary']"),"Next Button");
+    private final String domainZoneFromDate = new JsonSettingsFile("TestData.json").getValue("/domainZone").toString();
+    private final ITextBox passwordField = AqualityServices.getElementFactory().getTextBox(By.xpath("//input[contains(@placeholder,'Password')]"), "Password Field");
+    private final ITextBox emailField = AqualityServices.getElementFactory().getTextBox(By.xpath("//input[contains(@placeholder,'email')]"), "Email Field");
+    private final ITextBox domainField = AqualityServices.getElementFactory().getTextBox(By.xpath("//input[contains(@placeholder,'Domain')]"), "Domain Field");
+    private final ICheckBox termsCondition = AqualityServices.getElementFactory().getCheckBox(By.xpath("//span[@class='checkbox']"), "Terms & Conditions checkbox");
+    private final IButton domainZoneDropdownMenu = AqualityServices.getElementFactory().getButton(By.xpath("//div[contains(@class,'dropdown__field')]"), "Domain Zone dropdown menu");
+    private final IButton domainZone = AqualityServices.getElementFactory().getButton(By.xpath(String.format("//div[contains(text(),'%s')]", domainZoneFromDate)), "Domain Zone");
+    private final IButton next = AqualityServices.getElementFactory().getButton(By.xpath("//a[@class='button--secondary']"),"Next Button");
 
 
     public void enterPasswordAndEmail() {
         String email = RandomUtils.getRandomEmailName();
-        PASSWORD_FIELD.clearAndType(RandomUtils.getRandomPassword(email));
-        EMAIL_FIELD.clearAndType(email);
+        passwordField.clearAndType(RandomUtils.getRandomPassword(email));
+        emailField.clearAndType(email);
     }
     public void enterDomainName(){
-        DOMAIN_FIELD.clearAndType(RandomUtils.getRandomEmailDomain());
+        domainField.clearAndType(RandomUtils.getRandomEmailDomain());
     }
     public void chooseDomainZone(){
-        DOMAIN_ZONE_DROPDOWN.click();
-        DOMAIN_ZONE.click();
+        domainZoneDropdownMenu.click();
+        domainZone.click();
     }
     public void clickTermsCondition(){
-        TERMS_CONDITION.click();}
+        termsCondition.click();}
     public void nextClick(){
-        NEXT.click();}
+        next.click();}
 }

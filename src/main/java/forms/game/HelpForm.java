@@ -11,14 +11,14 @@ public class HelpForm extends Form {
         super(By.xpath("//div[contains(@class,'help-form')]"), "Help form");
     }
 
-    private final IButton SEND_TO_BOTTOM = AqualityServices.getElementFactory().getButton(By.xpath("//button[contains(@class,'help-form__send-to-bottom')]"),"Send to bottom button");
+    private final IButton sendToBottom = AqualityServices.getElementFactory().getButton(By.xpath("//button[contains(@class,'help-form__send-to-bottom')]"),"Send to bottom button");
     private static final ILabel HELP_CONTAINER = AqualityServices.getElementFactory().getLabel(By.xpath( "//div[contains(@class,'help-form')]"),"Help Container ");
-    private final boolean CONTAINS_HIDDEN = HELP_CONTAINER.getAttribute("class").contains("hidden");
+    private final boolean containsHidden = HELP_CONTAINER.getAttribute("class").contains("hidden");
     public void clickSendToBottom(){
-        SEND_TO_BOTTOM.click();
+        sendToBottom.click();
     }
 
     public boolean isHidden(){
-         return AqualityServices.getConditionalWait().waitFor(() -> CONTAINS_HIDDEN);
+         return AqualityServices.getConditionalWait().waitFor(() -> containsHidden);
     }
 }

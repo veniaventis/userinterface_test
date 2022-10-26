@@ -8,11 +8,11 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 
 public class UploadUtil {
-    private static final String getAvatarPath = new JsonSettingsFile("TestData.json").getValue("/imagePath").toString();
-    private static final StringSelection stringSelection = new StringSelection(System.getProperty("user.dir") + getAvatarPath);
+    private static final String AVATAR_PATH = new JsonSettingsFile("TestData.json").getValue("/imagePath").toString();
+    private static final StringSelection STRING_SELECTION = new StringSelection(System.getProperty("user.dir") + AVATAR_PATH);
 
     private static void copyPathToWindowsPopupMenu() throws AWTException {
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(STRING_SELECTION, null);
 
         Robot robot = new Robot();
         robot.delay(1000);

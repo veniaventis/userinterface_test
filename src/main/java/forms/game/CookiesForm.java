@@ -9,11 +9,11 @@ public class CookiesForm extends Form {
     protected CookiesForm() {
         super(By.xpath("//div[@class='cookies']"), "Cookies Form");
     }
-    private final IButton ACCEPT_COOKIE = AqualityServices.getElementFactory().getButton(By.xpath("//button[contains(@class,'button--transparent')]"),"Accept button");
+    private final IButton acceptCookie = AqualityServices.getElementFactory().getButton(By.xpath("//button[contains(@class,'button--transparent')]"),"Accept button");
     public void acceptClick(){
-        ACCEPT_COOKIE.click();
+        acceptCookie.click();
     }
     public boolean isCookieClosed(){
-        return ACCEPT_COOKIE.state().waitForNotExist();
+        return acceptCookie.state().waitForNotExist();
     }
 }
